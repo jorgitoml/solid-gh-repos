@@ -18,11 +18,13 @@ interface Props {
 
 const saveRepo = (repo: Repo) => {
   setSavedRepos([...savedRepos(), repo]);
+  localStorage.setItem('savedRepos', JSON.stringify(savedRepos()));
 };
 
 const unsaveRepo = (repoId: string) => {
   const nextState = savedRepos()?.filter((item) => item.id !== repoId);
   setSavedRepos(nextState);
+  localStorage.setItem('savedRepos', JSON.stringify(savedRepos()));
 };
 
 const isRepoSaved = (repoId: string) => {
